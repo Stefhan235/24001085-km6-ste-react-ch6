@@ -65,7 +65,7 @@ export const createCar =
         availableAt,
         setIsLoading
     ) =>
-    async (dispatch, getState) => {
+    async (getState) => {
         const state = getState();
         const { token } = state.auth;
 
@@ -98,7 +98,6 @@ export const createCar =
 
         try {
             const response = await axios.request(config);
-
             navigate("/");
         } catch (error) {
             toast.error(error?.response?.data?.message);
@@ -106,3 +105,27 @@ export const createCar =
         }
         setIsLoading(false);
     };
+
+export const deleteCar = (id) => async (dispatch, getState) => {
+    const state = getState();
+    const { token } = state.auth;
+
+    let config = {
+        method: "delete",
+        maxBodyLength: Infinity,
+        url: `${import.meta.env.VITE_BACKEND_API}/api/cars/${id}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    try {
+        const response = await axios.request(config);
+        if (response?.data?.message === "SUCCESS") {
+            toast.success("Operation was successful.");
+            dispatch(getCars());
+        }
+    } catch (error) {
+        toast.error(error?.response?.data?.message);
+    }
+};

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { getCars } from "../../redux/actions/cars";
+import { getCars, deleteCar } from "../../redux/actions/cars";
 
 import { Container, Card, Row, Col, Image, Button } from "react-bootstrap";
 
@@ -81,6 +81,16 @@ function Home() {
                                             as={Link}
                                             to={`/car/${car.id}`}
                                             className="w-100 mb-3"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                if (
+                                                    window.confirm(
+                                                        "Are You Sure Delete This Car?"
+                                                    )
+                                                ) {
+                                                    dispatch(deleteCar(car.id));
+                                                }
+                                            }}
                                         >
                                             Delete
                                         </Button>{" "}
