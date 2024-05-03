@@ -64,6 +64,7 @@ function Register() {
                             placeholder="Enter Phone Number"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
+                            required
                         />
                     </Form.Group>
                 </Col>
@@ -76,6 +77,7 @@ function Register() {
                     placeholder="Enter Address"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
+                    required
                 />
             </Form.Group>
 

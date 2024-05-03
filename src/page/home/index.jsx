@@ -16,7 +16,7 @@ function Home() {
 
     return (
         <Container className="mt-4">
-            <h1 className="mb-4">List Cars</h1>
+            <h1 className="mb-4">Car List</h1>
             <Row>
                 {cars ? (
                     cars.map((car, index) => (
