@@ -3,11 +3,11 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 
 function LoginPage() {
     return (
-        <Container className="mt-4">
+        <Container className="mt-5">
             <Row>
-                <Col md={6} className="mx-auto">
+                <Col md={4} className="mx-auto">
                     <Card>
-                        <Card.Header>LOGIN</Card.Header>
+                        <Card.Header>Login</Card.Header>
                         <Card.Body>
                             <Login />
                         </Card.Body>

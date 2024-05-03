@@ -5,7 +5,7 @@ import { register } from "../../redux/actions/auth";
 
 import { toast } from "react-toastify";
 
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Row, Col } from "react-bootstrap";
 
 function Register() {
     const navigate = useNavigate();
@@ -43,16 +43,31 @@ function Register() {
     };
     return (
         <Form onSubmit={onSubmit}>
-            <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                    type="text"
-                    placeholder="Enter Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
-            </Form.Group>
+            <Row>
+                <Col>
+                    <Form.Group className="mb-3" controlId="name">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group className="mb-3" controlId="phoneNumber">
+                        <Form.Label>Phone Number</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter Phone Number"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
 
             <Form.Group className="mb-3" controlId="address">
                 <Form.Label>Address</Form.Label>
@@ -61,16 +76,6 @@ function Register() {
                     placeholder="Enter Address"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="phoneNumber">
-                <Form.Label>Phone Number</Form.Label>
-                <Form.Control
-                    type="number"
-                    placeholder="Enter Phone Number"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
                 />
             </Form.Group>
 
@@ -88,27 +93,32 @@ function Register() {
                 </Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="password">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                    type="password"
-                    placeholder="Confirm Password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                />
-            </Form.Group>
+            <Row>
+                <Col>
+                    <Form.Group className="mb-3" controlId="password">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group className="mb-3" controlId="password">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
 
             <Form.Group controlId="photo" className="mb-3">
                 <Form.Label>Photo</Form.Label>
@@ -117,8 +127,12 @@ function Register() {
                     onChange={(e) => setImage(e.target.files[0])}
                 />
             </Form.Group>
-
-            <Button variant="primary" type="submit" disabled={isLoading}>
+            <Button
+                variant="primary"
+                type="submit"
+                className="mt-2 w-100"
+                disabled={isLoading}
+            >
                 {isLoading ? "Processing..." : "Register"}
             </Button>
         </Form>

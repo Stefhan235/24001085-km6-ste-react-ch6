@@ -15,7 +15,8 @@ function Home() {
     }, [dispatch]);
 
     return (
-        <Container className="mt-5">
+        <Container className="mt-4">
+            <h1 className="mb-4">List Cars</h1>
             <Row>
                 {cars ? (
                     cars.map((car, index) => (
@@ -29,10 +30,13 @@ function Home() {
                                         objectFit: "cover",
                                     }}
                                 />
-                                <h6 className="pt-3">
+                                <h5 className="mt-3">
                                     {car.brand} {car.model}
-                                </h6>
-                                <h5>Rp. {car.rentPerDay} / hari</h5>
+                                </h5>
+                                <h5>
+                                    Rp. {car.rentPerDay.toLocaleString("id-ID")}{" "}
+                                    / hari
+                                </h5>
                                 <p>
                                     <span>
                                         <Image
@@ -64,7 +68,7 @@ function Home() {
                                     variant="primary"
                                     as={Link}
                                     to={`/car/${car.id}`}
-                                    className="my-3"
+                                    className="mb-3"
                                 >
                                     Details
                                 </Button>{" "}
