@@ -21,7 +21,7 @@ function Home() {
                 {cars && cars.length > 0 ? (
                     cars.map((car, index) => (
                         <Col md={3} key={index}>
-                            <Card className="p-4">
+                            <Card className="p-4 mb-4">
                                 <Image
                                     src={car.image}
                                     className="img-fluid rounded"
@@ -64,15 +64,36 @@ function Home() {
                                     </span>
                                     Tahun {car.year}
                                 </p>
+                                <Row>
+                                    <Col>
+                                        <Button
+                                            variant="primary"
+                                            as={Link}
+                                            to={`/car/${car.id}`}
+                                            className="w-100 mb-3"
+                                        >
+                                            Edit
+                                        </Button>{" "}
+                                    </Col>
+                                    <Col>
+                                        <Button
+                                            variant="danger"
+                                            as={Link}
+                                            to={`/car/${car.id}`}
+                                            className="w-100 mb-3"
+                                        >
+                                            Delete
+                                        </Button>{" "}
+                                    </Col>
+                                </Row>
                                 <Button
-                                    variant="primary"
+                                    variant="success"
                                     as={Link}
                                     to={`/car/${car.id}`}
                                     className="mb-3"
                                 >
                                     Details
                                 </Button>{" "}
-                                <Button variant="success">Book</Button>{" "}
                             </Card>
                         </Col>
                     ))

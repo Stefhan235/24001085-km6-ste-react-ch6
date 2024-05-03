@@ -11,6 +11,7 @@ import Profile from "./page/profile";
 import Protected from "./components/protected";
 import NonProtected from "./components/nonProtected";
 import CarDetail from "./page/car";
+import CreateCar from "./page/createCar";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -58,6 +59,15 @@ const router = createBrowserRouter([
             <Protected>
                 <Navbar />
                 <CarDetail />
+            </Protected>
+        ),
+    },
+    {
+        path: "/car/create",
+        element: (
+            <Protected>
+                <Navbar />
+                <CreateCar />
             </Protected>
         ),
     },

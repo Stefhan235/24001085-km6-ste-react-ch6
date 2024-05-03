@@ -45,6 +45,14 @@ function NavBar() {
                                     {user?.name}
                                 </Nav.Link>
                                 <Button
+                                    variant="outline-success"
+                                    as={Link}
+                                    to={`/car/create`}
+                                    className="me-4"
+                                >
+                                    Add Car
+                                </Button>{" "}
+                                <Button
                                     variant="outline-danger"
                                     onClick={() => {
                                         dispatch(logout());
