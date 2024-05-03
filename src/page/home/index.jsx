@@ -18,7 +18,7 @@ function Home() {
         <Container className="mt-4">
             <h1 className="mb-4">Car List</h1>
             <Row>
-                {cars ? (
+                {cars && cars.length > 0 ? (
                     cars.map((car, index) => (
                         <Col md={3} key={index}>
                             <Card className="p-4">
@@ -77,7 +77,7 @@ function Home() {
                         </Col>
                     ))
                 ) : (
-                    <h2>No cars found</h2>
+                    <h3>No Cars Found</h3>
                 )}
             </Row>
         </Container>
