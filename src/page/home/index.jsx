@@ -86,7 +86,7 @@ function Home() {
                                                     e.preventDefault();
                                                     if (
                                                         window.confirm(
-                                                            "Are You Sure Delete This Car?"
+                                                            "Yakin Mau Menghapus Mobil Ini?"
                                                         )
                                                     ) {
                                                         dispatch(
