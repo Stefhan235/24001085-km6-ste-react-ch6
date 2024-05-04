@@ -12,6 +12,7 @@ import Protected from "./components/protected";
 import NonProtected from "./components/nonProtected";
 import CarDetail from "./page/car";
 import CreateCar from "./page/createCar";
+import EditCar from "./page/editCar";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -65,9 +66,18 @@ const router = createBrowserRouter([
     {
         path: "/car/create",
         element: (
-            <Protected>
+            <Protected roles={["admin"]}>
                 <Navbar />
                 <CreateCar />
+            </Protected>
+        ),
+    },
+    {
+        path: "/car/edit/:id",
+        element: (
+            <Protected roles={["admin"]}>
+                <Navbar />
+                <EditCar />
             </Protected>
         ),
     },

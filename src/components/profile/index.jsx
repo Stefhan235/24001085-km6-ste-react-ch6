@@ -28,7 +28,7 @@ function Profile() {
                         </Col>
                     )}
 
-                    <Col md={8}>
+                    <Col>
                         <Form>
                             <Form.Group className="mb-3" controlId="name">
                                 <Form.Label>Name</Form.Label>

@@ -33,6 +33,10 @@ export const login =
 
             // redirect to home
             navigate("/"); // it will be not consistent, so alternative we use window until we used the state management
+
+            if (response?.data?.message === "SUCCESS") {
+                toast.success("Login Berhasil");
+            }
         } catch (error) {
             toast.error(error?.response?.data?.message);
             dispatch(logout());
@@ -78,7 +82,10 @@ export const register =
             const { token } = data;
             localStorage.setItem("token", token);
 
-            navigate("/");
+            navigate("/login");
+            if (response?.data?.message === "SUCCESS") {
+                toast.success("Registrasi Berhasil");
+            }
         } catch (error) {
             toast.error(error?.response?.data?.message);
             dispatch(logout());

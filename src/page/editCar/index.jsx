@@ -1,17 +1,17 @@
-import CreateCar from "../../components/createCar";
+import EditCar from "../../components/editCar";
 import { Container, Row, Col, Card } from "react-bootstrap";
 
-function CreateCarPage() {
+function editCarPage() {
     return (
         <Container className="mt-4">
-            <h1 className="mb-4">Add Car</h1>
+            <h1 className="mb-4">Edit Car</h1>
             <Card>
                 <Card.Body>
-                    <CreateCar />
+                    <EditCar />
                 </Card.Body>
             </Card>
         </Container>
     );
 }
 
-export default CreateCarPage;
+export default editCarPage;

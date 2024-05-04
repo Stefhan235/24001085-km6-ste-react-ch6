@@ -65,7 +65,7 @@ export const createCar =
         availableAt,
         setIsLoading
     ) =>
-    async (getState) => {
+    async (dispatch, getState) => {
         const state = getState();
         const { token } = state.auth;
 
@@ -99,10 +99,77 @@ export const createCar =
         try {
             const response = await axios.request(config);
             navigate("/");
+            if (response?.data?.message === "SUCCESS") {
+                toast.success("Mobil Berhasil Ditambahkan");
+                dispatch(getCars());
+            }
         } catch (error) {
             toast.error(error?.response?.data?.message);
             navigate("/");
         }
+        setIsLoading(false);
+    };
+
+export const editCar =
+    (
+        id,
+        navigate,
+        brand,
+        model,
+        plate,
+        image,
+        type,
+        transmission,
+        year,
+        capacity,
+        rentPerDay,
+        available,
+        availableAt,
+        setIsLoading
+    ) =>
+    async (dispatch, getState) => {
+        const state = getState();
+        const { token } = state.auth;
+
+        setIsLoading(true);
+
+        let data = new FormData();
+        data.append("brand", brand);
+        data.append("model", model);
+        data.append("plate", plate);
+        if (image) {
+            data.append("image", image);
+        }
+        data.append("type", type);
+        data.append("transmission", transmission);
+        data.append("year", year);
+        data.append("capacity", capacity);
+        data.append("rentPerDay", rentPerDay);
+        data.append("available", available);
+        data.append("availableAt", availableAt);
+
+        let config = {
+            method: "put",
+            maxBodyLength: Infinity,
+            url: `${import.meta.env.VITE_BACKEND_API}/api/cars/${id}`,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            data: data,
+        };
+
+        try {
+            const response = await axios.request(config);
+            navigate("/");
+            if (response?.data?.message === "SUCCESS") {
+                toast.success("Mobil Berhasil Diedit");
+                dispatch(getCars());
+            }
+        } catch (error) {
+            toast.error(error?.response?.data?.message);
+            navigate("/");
+        }
+
         setIsLoading(false);
     };
 
@@ -122,7 +189,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
     try {
         const response = await axios.request(config);
         if (response?.data?.message === "SUCCESS") {
-            toast.success("Operation was successful.");
+            toast.success("Mobil Berhasil Dihapus");
             dispatch(getCars());
         }
     } catch (error) {

@@ -175,6 +175,7 @@ function createCarComponent() {
                         <Form.Control
                             type="file"
                             onChange={(e) => setImage(e.target.files[0])}
+                            required
                         />
                     </Form.Group>
                 </Col>
@@ -185,6 +186,12 @@ function createCarComponent() {
                 type="submit"
                 className="mt-2 w-100"
                 disabled={isLoading}
+                onClick={() => {
+                    const confirmed = window.confirm("Yakin Data Sudah Benar?");
+                    if (confirmed) {
+                        onSubmit();
+                    }
+                }}
             >
                 {isLoading ? "Processing..." : "Save"}
             </Button>

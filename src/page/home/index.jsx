@@ -9,7 +9,7 @@ import { Container, Card, Row, Col, Image, Button } from "react-bootstrap";
 function Home() {
     const dispatch = useDispatch();
     const { cars } = useSelector((state) => state.cars);
-
+    const { user, token } = useSelector((state) => state.auth);
     useEffect(() => {
         dispatch(getCars());
     }, [dispatch]);
@@ -64,43 +64,46 @@ function Home() {
                                     </span>
                                     Tahun {car.year}
                                 </p>
-                                <Row>
-                                    <Col>
-                                        <Button
-                                            variant="primary"
-                                            as={Link}
-                                            to={`/car/${car.id}`}
-                                            className="w-100 mb-3"
-                                        >
-                                            Edit
-                                        </Button>{" "}
-                                    </Col>
-                                    <Col>
-                                        <Button
-                                            variant="danger"
-                                            as={Link}
-                                            to={`/car/${car.id}`}
-                                            className="w-100 mb-3"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                if (
-                                                    window.confirm(
-                                                        "Are You Sure Delete This Car?"
-                                                    )
-                                                ) {
-                                                    dispatch(deleteCar(car.id));
-                                                }
-                                            }}
-                                        >
-                                            Delete
-                                        </Button>{" "}
-                                    </Col>
-                                </Row>
+                                {user?.role == "admin" && (
+                                    <Row>
+                                        <Col>
+                                            <Button
+                                                variant="primary"
+                                                as={Link}
+                                                to={`/car/edit/${car.id}`}
+                                                className="w-100 mb-3"
+                                            >
+                                                Edit
+                                            </Button>{" "}
+                                        </Col>
+                                        <Col>
+                                            <Button
+                                                variant="danger"
+                                                as={Link}
+                                                to={`/car/${car.id}`}
+                                                className="w-100 mb-3"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    if (
+                                                        window.confirm(
+                                                            "Are You Sure Delete This Car?"
+                                                        )
+                                                    ) {
+                                                        dispatch(
+                                                            deleteCar(car.id)
+                                                        );
+                                                    }
+                                                }}
+                                            >
+                                                Delete
+                                            </Button>{" "}
+                                        </Col>
+                                    </Row>
+                                )}
                                 <Button
                                     variant="success"
                                     as={Link}
                                     to={`/car/${car.id}`}
-                                    className="mb-3"
                                 >
                                     Details
                                 </Button>{" "}
